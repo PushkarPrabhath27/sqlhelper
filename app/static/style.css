@@ -1,0 +1,83 @@
+.download-form {
+    margin-top: 20px;
+}
+
+.btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background-color: var(--primary-color);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-secondary:hover {
+    background-color: var(--secondary-color);
+}
+
+.btn-secondary svg {
+    width: 16px;
+    height: 16px;
+}
+
+.file-input-container {
+    margin-bottom: 15px;
+}
+
+.file-name {
+    margin-left: 10px;
+    color: #666;
+    font-size: 0.9em;
+}
+
+.custom-file-upload {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background-color: #f5f5f5;
+    border: 2px dashed #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.custom-file-upload:hover {
+    border-color: var(--primary-color);
+    background-color: #f0f0f0;
+}
+
+.custom-file-upload svg {
+    width: 16px;
+    height: 16px;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background-color: var(--primary-color);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: var(--secondary-color);
+}
+
+.btn-primary svg {
+    width: 16px;
+    height: 16px;
+} 

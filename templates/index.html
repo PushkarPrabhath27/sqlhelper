@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Easy Data Viewer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Easy Data Viewer</h1>
+            <p class="tagline">Visualize and download your data with ease</p>
+        </header>
+        
+        {% if error %}
+        <div class="error-message">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-alert-circle"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+            {{ error }}
+        </div>
+        {% endif %}
+
+        <div class="upload-section">
+            <h2>Upload Your Data</h2>
+            <p class="help-text">You can either upload a file or paste your data directly below.</p>
+            
+            <div class="upload-options">
+                <div class="option-card file-upload">
+                    <h3>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-upload"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+                        Upload a File
+                    </h3>
+                    <form method="POST" enctype="multipart/form-data">
+                        <label for="file-upload" class="custom-file-upload">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+                            Choose File
+                        </label>
+                        <input id="file-upload" type="file" name="file" accept=".csv,.xlsx,.xls">
+                        <button type="submit" class="btn-primary">Upload File</button>
+                    </form>
+                </div>
+
+                <div class="option-card text-input">
+                    <h3>Option 2: Paste Your Data</h3>
+                    <p class="help-text">Just copy and paste your data here. Each line will be a new row.</p>
+                    <form method="POST">
+                        <textarea name="raw_data" rows="10" placeholder="Paste your data here...
+Example:
+Name Age City
+John 25 NewYork
+Mary 30 London"></textarea>
+                        <button type="submit">Process Data</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        {% if table %}
+        <div class="table-section">
+            <h2>Data Preview</h2>
+            <div class="table-container">
+                {{ table | safe }}
+            </div>
+            
+            <form method="POST" action="{{ url_for('download') }}">
+                <input type="hidden" name="csv_data" value="{{ csv_data }}">
+                <button type="submit" class="btn-secondary">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-download"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                    Download as CSV
+                </button>
+            </form>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
